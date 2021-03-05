@@ -94,19 +94,20 @@ function App() {
 
         const clientId = document.getElementById('client_id');
 
-        if (clientId.value === '') {
-            enqueueSnackbar('Client ID is invalid.', {variant: 'error'});
-            return;
-        }
+        // if (clientId.value === '') {
+        //     enqueueSnackbar('Client ID is invalid.', {variant: 'error'});
+        //     return;
+        // }
 
         const permissions = calculatePermissions();
 
-        if (permissions <= 0) {
-            enqueueSnackbar('No permissions selected.', {variant: 'error'});
-            return;
-        }
+        // if (permissions <= 0) {
+        //     enqueueSnackbar('No permissions selected.', {variant: 'error'});
+        //     return;
+        // }
 
         // window.location.href = DISCORD_AUTH_URL.replace('{CLIENT_ID}', clientId.value).replace('{PERMISSIONS}', permissions.toString());
+        enqueueSnackbar('Inviting the bot is not yet implemented. Stay Tuned.', { variant: 'info' })
     }
 
     return (
