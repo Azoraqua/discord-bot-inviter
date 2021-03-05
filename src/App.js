@@ -188,6 +188,11 @@ function App() {
                                     ))}
                                 </FormGroup>
                             </div>
+
+                            <hr style={{ backgroundColor: '#444' }} />
+                            <ul style={{ listStyle: 'none', marginTop: '10px', marginLeft: '-40px', marginBottom: '0' }}>
+                                <li><Typography variant={"caption"} style={{ color: 'orange', fontSize: '24px' }}>&#9632;</Typography> <Typography variant={"caption"}>Requires the owner to have 2FA enabled but only when the server requires it.</Typography></li>
+                            </ul>
                         </fieldset>
 
                         <FormGroup style={{marginTop: '30px', marginBottom: '50px'}}>
