@@ -63,7 +63,7 @@ function App() {
                         <fieldset style={{textAlign: "center", marginTop: '20px'}}>
                             <legend>Permissions</legend>
 
-                            <FormGroup>
+                            <FormGroup style={{ textAlign: 'center', marginLeft: '50%', transform: 'translateX(-70%)' }}>
                                 {PERMISSIONS.map(p => (
                                     <FormControlLabel
                                         key={`${p.id}`}
