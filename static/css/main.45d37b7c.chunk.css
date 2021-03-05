@@ -1,0 +1,2 @@
+@import url(http://fonts.googleapis.com/css2?family=Roboto);body,html{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:"Roboto",sans-serif;font-size:1.2rem;background-color:#333;overflow:hidden!important}form input[type=text]{color:#ddd!important;text-align:center!important}fieldset{border:1px solid #ddd;border-radius:5px;padding:35px;color:#ddd}#root{width:100vw;height:100vh;position:relative}#root>div{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-width:480px;z-index:3}
+/*# sourceMappingURL=main.45d37b7c.chunk.css.map */
