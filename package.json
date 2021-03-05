@@ -2,7 +2,7 @@
   "name": "discord-bot-inviter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./discord-bot-inviter",
+  "homepage": ".",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
