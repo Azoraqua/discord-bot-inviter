@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "./discord-bot-inviter/static/css/main.45d37b7c.chunk.css",
-    "main.js": "./discord-bot-inviter/static/js/main.df344c6a.chunk.js",
-    "main.js.map": "./discord-bot-inviter/static/js/main.df344c6a.chunk.js.map",
-    "runtime-main.js": "./discord-bot-inviter/static/js/runtime-main.340ca714.js",
-    "runtime-main.js.map": "./discord-bot-inviter/static/js/runtime-main.340ca714.js.map",
-    "static/js/2.695ed796.chunk.js": "./discord-bot-inviter/static/js/2.695ed796.chunk.js",
-    "static/js/2.695ed796.chunk.js.map": "./discord-bot-inviter/static/js/2.695ed796.chunk.js.map",
-    "index.html": "./discord-bot-inviter/index.html",
-    "static/css/main.45d37b7c.chunk.css.map": "./discord-bot-inviter/static/css/main.45d37b7c.chunk.css.map",
-    "static/js/2.695ed796.chunk.js.LICENSE.txt": "./discord-bot-inviter/static/js/2.695ed796.chunk.js.LICENSE.txt"
+    "main.css": "./static/css/main.45d37b7c.chunk.css",
+    "main.js": "./static/js/main.df344c6a.chunk.js",
+    "main.js.map": "./static/js/main.df344c6a.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.4c271130.js",
+    "runtime-main.js.map": "./static/js/runtime-main.4c271130.js.map",
+    "static/js/2.695ed796.chunk.js": "./static/js/2.695ed796.chunk.js",
+    "static/js/2.695ed796.chunk.js.map": "./static/js/2.695ed796.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.45d37b7c.chunk.css.map": "./static/css/main.45d37b7c.chunk.css.map",
+    "static/js/2.695ed796.chunk.js.LICENSE.txt": "./static/js/2.695ed796.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.340ca714.js",
+    "static/js/runtime-main.4c271130.js",
     "static/js/2.695ed796.chunk.js",
     "static/css/main.45d37b7c.chunk.css",
     "static/js/main.df344c6a.chunk.js"
