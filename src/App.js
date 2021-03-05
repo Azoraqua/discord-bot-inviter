@@ -27,16 +27,52 @@ function App() {
             {id: 'p_manage_channels', name: 'Manage Channels', permission: 0x10, tfa: true},
             {id: 'p_kick_members', name: 'Kick Members', permission: 0x2, tfa: true},
             {id: 'p_ban_members', name: 'Ban Members', permission: 0x4, tfa: true},
+            {id: 'p_invite', name: 'Create Invite', permission: 0x1},
+            {id: 'p_nickname', name: 'Change Nickname', permission: 0x4000000},
             {id: 'p_manage_nicknames', name: 'Manage Nicknames', permission: 0x8000000},
             {id: 'p_manage_emojis', name: 'Manage Emojis', permission: 0x40000000},
             {id: 'p_manage_webhooks', name: 'Manage Webhooks', permission: 0x20000000, tfa: true},
         ],
 
         text: [
+            {id: 'p_view', name: 'View Channel', permission: 0x400},
+            {id: 'p_read_message', name: 'Read Messages', permission: 0x400},
+            {id: 'p_send_message', name: 'Send Messages', permission: 0x800},
+            {id: 'p_send_tts_message', name: 'Send TTS Messages', permission: 0x1000},
             {id: 'p_manage_messages', name: 'Manage Messages', permission: 0x2000, tfa: true},
+            {id: 'p_embed_links', name: 'Embed Links', permission: 0x4000},
+            {id: 'p_attach_files', name: 'Attach Files', permission: 0x8000},
+            {id: 'p_message_history', name: 'Read Message History', permission: 0x10000},
+            {id: 'p_mention_all', name: 'Mention @everyone, @here and All Roles', permission: 0x20000},
+            {id: 'p_external_emojis', name: 'Use External Emojis', permission: 0x40000},
+            {id: 'p_add_reactions', name: 'Add Reactions', permission: 0x40},
         ],
 
-        voice: []
+        voice: [
+            {id: 'p_connect', name: 'Connect', permission: 0x100000},
+            {id: 'p_speak', name: 'Speak', permission: 0x200000},
+            {id: 'p_video', name: 'Video', permission: 0x200},
+            {id: 'p_mute', name: 'Mute Members', permission: 0x400000},
+            {id: 'p_deafen', name: 'Deafen Members', permission: 0x800000},
+            {id: 'p_move', name: 'Move Members', permission: 0x1000000},
+            {id: 'p_voice_activity', name: 'Use Voice Activity', permission: 0x2000000},
+            {id: 'p_priority_speaker', name: 'Priority Speaker', permission: 0x100},
+        ]
+    };
+    const RECOMMENDED_PERMISSIONS = {
+        general: [
+            {id: 'p_manage_channels', name: 'Manage Channels', permission: 0x10, tfa: true},
+            {id: 'p_kick_members', name: 'Kick Members', permission: 0x2, tfa: true},
+            {id: 'p_ban_members', name: 'Ban Members', permission: 0x4, tfa: true},
+        ],
+        text: [
+            {id: 'p_view', name: 'View Channel', permission: 0x400},
+            {id: 'p_read_message', name: 'Read Messages', permission: 0x400},
+            {id: 'p_send_message', name: 'Send Messages', permission: 0x800},
+            {id: 'p_manage_messages', name: 'Manage Messages', permission: 0x2000, tfa: true},
+            {id: 'p_message_history', name: 'Read Message History', permission: 0x10000},
+            {id: 'p_add_reactions', name: 'Add Reactions', permission: 0x40},
+        ]
     };
 
     function internalize(name) {
@@ -44,17 +80,13 @@ function App() {
     }
 
     function calculatePermissions() {
-        let permissions = 0;
-        const options = [...document.querySelectorAll('.p-option')];
+        return -1;
+    }
 
-        options.forEach(o => {
-            const c = o.children[0].children[0];
-            const permission = PERMISSIONS.flat().find(p => p.id === c.id);
-
-            permissions |= permission.permission;
+    function selectRecommended() {
+        [...RECOMMENDED_PERMISSIONS['general'], ...RECOMMENDED_PERMISSIONS['text']].forEach(p => {
+           document.getElementById(internalize(p.id)).click();
         });
-
-        return permissions;
     }
 
     function handleSubmit(e) {
@@ -97,57 +129,65 @@ function App() {
                         </fieldset>
 
                         <fieldset style={{
-                            textAlign: "center",
                             marginTop: '20px',
-                            display: "flex",
-                            justifyContent: "space-between"
+
                         }}>
-                            <legend>Permissions</legend>
+                            <legend style={{textAlign: 'center'}}>
+                                Permissions
+                            </legend>
 
-                            <FormGroup style={{margin: '0 25px'}}>
-                                <Typography variant={"caption"} color={"secondary"}>General</Typography>
+                            <div style={{ textAlign: "center", marginTop: '-40px' }}>
+                                <Button color={"secondary"} onClick={e => selectRecommended()}>Recommended</Button>
+                            </div>
 
-                                {PERMISSIONS['general'].map(p => (
-                                    <FormControlLabel className={p.tfa ? 'tfa' : ''}
-                                                      key={`${p.id}`}
-                                                      control={<Checkbox id={`${internalize(p.id)}`}
-                                                                         name={`${internalize(p.id)}`}
-                                                                         data-permission={`${p.permission}`}
-                                                                         className={'p-option'}/>}
-                                                      label={<Typography variant={"caption"}>{p.name}{p.critical ? <Badge style={{ color: '#fff', transform: 'scale(0.60)'}} title={'Be careful when granting this permission because it will grant all permissions to the Discord Bot.'}><ErrorIcon /></Badge> : ''}</Typography>}
-                                    />
-                                ))}
-                            </FormGroup>
+                            <div style={{ display: 'flex', marginTop: '25px'}}>
+                                <FormGroup style={{margin: '0 25px'}}>
+                                    <Typography variant={"caption"} color={"secondary"}>General</Typography>
 
-                            <FormGroup style={{margin: '0 25px'}}>
-                                <Typography variant={"caption"} color={"secondary"}>Text</Typography>
+                                    {PERMISSIONS['general'].map(p => (
+                                        <FormControlLabel className={p.tfa ? 'tfa' : ''}
+                                                          key={`${p.id}`}
+                                                          control={<Checkbox id={`${internalize(p.id)}`}
+                                                                             name={`${internalize(p.id)}`}
+                                                                             data-permission={`${p.permission}`}
+                                                                             className={'p-option'}/>}
+                                                          label={<Typography variant={"caption"}>{p.name}{p.critical ?
+                                                              <Badge style={{color: '#fff', transform: 'scale(0.60)'}}
+                                                                     title={'Be careful when granting this permission because it will grant all permissions to the Discord Bot.'}><ErrorIcon/></Badge> : ''}</Typography>}
+                                        />
+                                    ))}
+                                </FormGroup>
 
-                                {PERMISSIONS['text'].map(p => (
-                                    <FormControlLabel className={p.tfa ? 'tfa' : ''}
-                                                      key={`${p.id}`}
-                                                      control={<Checkbox id={`${internalize(p.id)}`}
-                                                                         name={`${internalize(p.id)}`}
-                                                                         data-permission={`${p.permission}`}
-                                                                         className={'p-option'}/>}
-                                                      label={<Typography variant={"caption"}>{p.name}</Typography>}
-                                    />
-                                ))}
-                            </FormGroup>
+                                <FormGroup style={{margin: '0 25px'}}>
+                                    <Typography variant={"caption"} color={"secondary"}>Text</Typography>
 
-                            <FormGroup style={{margin: '0 25px'}}>
-                                <Typography variant={"caption"} color={"secondary"}>Voice</Typography>
+                                    {PERMISSIONS['text'].map(p => (
+                                        <FormControlLabel className={p.tfa ? 'tfa' : ''}
+                                                          key={`${p.id}`}
+                                                          control={<Checkbox id={`${internalize(p.id)}`}
+                                                                             name={`${internalize(p.id)}`}
+                                                                             data-permission={`${p.permission}`}
+                                                                             className={'p-option'}/>}
+                                                          label={<Typography variant={"caption"}>{p.name}</Typography>}
+                                        />
+                                    ))}
+                                </FormGroup>
 
-                                {PERMISSIONS['voice'].map(p => (
-                                    <FormControlLabel className={p.tfa ? 'tfa' : ''}
-                                                      key={`${p.id}`}
-                                                      control={<Checkbox id={`${internalize(p.id)}`}
-                                                                         name={`${internalize(p.id)}`}
-                                                                         data-permission={`${p.permission}`}
-                                                                         className={'p-option'}/>}
-                                                      label={<Typography variant={"caption"}>{p.name}</Typography>}
-                                    />
-                                ))}
-                            </FormGroup>
+                                <FormGroup style={{margin: '0 25px'}}>
+                                    <Typography variant={"caption"} color={"secondary"}>Voice</Typography>
+
+                                    {PERMISSIONS['voice'].map(p => (
+                                        <FormControlLabel className={p.tfa ? 'tfa' : ''}
+                                                          key={`${p.id}`}
+                                                          control={<Checkbox id={`${internalize(p.id)}`}
+                                                                             name={`${internalize(p.id)}`}
+                                                                             data-permission={`${p.permission}`}
+                                                                             className={'p-option'}/>}
+                                                          label={<Typography variant={"caption"}>{p.name}</Typography>}
+                                        />
+                                    ))}
+                                </FormGroup>
+                            </div>
                         </fieldset>
 
                         <FormGroup style={{marginTop: '30px', marginBottom: '50px'}}>
