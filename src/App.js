@@ -80,7 +80,18 @@ function App() {
     }
 
     function calculatePermissions() {
-        return -1;
+        let permissions = 0;
+
+        [...document.querySelectorAll('.p-option')].forEach(p => {
+            const perm = p.getAttribute('data-permission');
+            const checked = p.children[0].children[0].checked;
+
+            if (checked) {
+                permissions |= perm;
+            }
+        });
+
+        return permissions;
     }
 
     function selectRecommended() {
@@ -94,20 +105,20 @@ function App() {
 
         const clientId = document.getElementById('client_id');
 
-        // if (clientId.value === '') {
-        //     enqueueSnackbar('Client ID is invalid.', {variant: 'error'});
-        //     return;
-        // }
+        if (clientId.value === '') {
+            enqueueSnackbar('Client ID is invalid.', {variant: 'error'});
+            return;
+        }
 
         const permissions = calculatePermissions();
+        console.log("Calculated Permissions = ", permissions);
 
-        // if (permissions <= 0) {
-        //     enqueueSnackbar('No permissions selected.', {variant: 'error'});
-        //     return;
-        // }
+        if (permissions <= 0) {
+            enqueueSnackbar('No permissions selected.', {variant: 'error'});
+            return;
+        }
 
-        // window.location.href = DISCORD_AUTH_URL.replace('{CLIENT_ID}', clientId.value).replace('{PERMISSIONS}', permissions.toString());
-        enqueueSnackbar('Inviting the bot is not yet implemented. Stay Tuned.', { variant: 'info' })
+        window.location.href = DISCORD_AUTH_URL.replace('{CLIENT_ID}', clientId.value).replace('{PERMISSIONS}', permissions.toString());
     }
 
     return (
