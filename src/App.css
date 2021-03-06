@@ -43,3 +43,10 @@ fieldset {
     color: orange;
     font-weight: bold;
 }
+
+#notepad {
+    position: absolute !important;
+    top: 5px !important;
+    left: 5px !important;
+    background-color: blue !important;
+}

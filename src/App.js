@@ -8,13 +8,13 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import {SnackbarProvider, useSnackbar} from "notistack";
+import {useSnackbar} from "notistack";
 import Badge from "@material-ui/core/Badge";
 import ErrorIcon from '@material-ui/icons/Error';
 
 const DISCORD_AUTH_URL = "https://discord.com/oauth2/authorize?client_id={CLIENT_ID}&scope=bot&permissions={PERMISSIONS}";
 
-function App() {
+export default function App() {
     const {enqueueSnackbar} = useSnackbar();
 
     const PERMISSIONS = {
@@ -213,14 +213,10 @@ function App() {
                     </form>
                 </main>
             </div>
+
+            <div id={'notepad'}></div>
         </>
     );
 }
 
-export default function IntegrationNotistack() {
-    return (
-        <SnackbarProvider maxSnack={3}>
-            <App/>
-        </SnackbarProvider>
-    )
-};
+
